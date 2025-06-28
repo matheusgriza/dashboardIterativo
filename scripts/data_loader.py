@@ -1,6 +1,8 @@
 import pandas as pd;
 import os;
+import streamlit as st
 
+@st.cache_data
 def load_data():
     try:
         processed = os.path.join("data","processed","car_data.csv")
