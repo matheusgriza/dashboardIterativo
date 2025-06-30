@@ -1,6 +1,6 @@
 import streamlit as st;
 from scripts.data_loader import load_data;
-from components.chart import display
+from components.chart import display;
 
 
 #Page config
