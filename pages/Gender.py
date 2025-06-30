@@ -8,25 +8,51 @@ from components.chart import display
 df = load_data()
 
 #Page config
-st.set_page_config(page_title="By Gender", layout="wide")
+st.set_page_config(page_title="Gender", layout="wide")
+st.markdown("# 🧑‍💼👩‍💼 Data by Gender")
+
+
+#Layout
+## Chart column is wider
+row1_col1, row1_col2 = st.columns([3,2])
+
+
+with row1_col1:
+    #Bar
+    display(
+        kind='bar',
+        df=df,
+        group_col='Gender',
+        value_col='Price',  # Make sure this matches an actual column in your DataFrame
+        title='Average Age by Gender'
+    )
+
+with row1_col2:
+    st.markdown("Chart description")
+    st.write("This chart displays how much money each gender spends on cars")
+    
+st.markdown("---")
+
+# === Row2 ====
+row2_col1, row2_col2 = st.columns([3,1])
+
+
+with row2_col1:
+    #Count Bar
+    display(
+        kind= 'bar_count',
+        df = df,
+        group_col='Company',
+        value_col= 'Gender',
+        title='Counting Card Models per Gender'
+    )
+
+with row2_col2:
+    st.markdown("Chart description")
+    st.write("This chart displays which brand are prefered by gender")
 
 
 
-#Chart
-display(
-    kind= 'bar',
-    df = df,
-    group_col='Gender',
-    value_col='Price',
-    title='Average Age by Gender'
-)
 
 
-display(
-    kind= 'bar_count',
-    df = df,
-    group_col='Company',
-    value_col= 'Gender',
-    title='Counting Card Models per Gender'
-)
 
