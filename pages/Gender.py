@@ -16,12 +16,12 @@ st.markdown("# 🧑‍💼👩‍💼 Data by Gender")
 ## Chart column is wider
 row1_col1, row1_col2 = st.columns([3,2])
 
-
+f1_df = df.groupby('Gender')["Price"].agg('mean').reset_index()
 with row1_col1:
     #Bar
     display(
         kind='bar',
-        df=df,
+        df=f1_df,
         group_col='Gender',
         value_col='Price',  # Make sure this matches an actual column in your DataFrame
         title='Average Age by Gender'

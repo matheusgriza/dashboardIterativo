@@ -1,7 +1,7 @@
 import streamlit as st;
 from scripts.data_loader import load_data
 from components.chart import display
-
+import pandas as pd
 #Page config
 st.set_page_config(page_title="By Car Model & Brand", layout="wide")
 st.markdown("# 🚘 Sales by Car Model")
@@ -56,7 +56,7 @@ with text_col1:
 
 st.markdown("---")
 
-col3, col4 = st.columns(2)
+col3, col4, col5 = st.columns(3)
 
 with col3:
     body_style_opt = ["All"] + sorted(df['Body Style'].unique())
@@ -76,30 +76,32 @@ with col4:
     options= price_options,
     format_func = lambda x: f"${x:,.0f}" 
     )
+with col5:
+    auto = st.checkbox("Auto")
+    manual = st.checkbox("Manual")
    
 
-#Filter
 f2_df = df.copy()
 
 f2_df = f2_df[f2_df["Price"] <= price_slider]
 
-if(body_style != "All"):
+if body_style != "All":
     f2_df = f2_df[f2_df["Body Style"] == body_style]
 
-f2_df = f2_df.sort_values(by="Price", ascending=False).head(10)
-
+if(auto and not(manual)):
+    f2_df = f2_df[f2_df["Transmission"] == "Auto"]
+elif(manual and not(auto)):
+    f2_df = f2_df[f2_df["Transmission"] == "Manual"]
+    
+f2_df = f2_df.sort_values(by="Price", ascending=False)
 
 display(
-    kind= 'bar',
-    df = f2_df,
+    kind='bar',
+    df=f2_df,
     group_col='Model',
-    value_col= 'Price',
-    title = 'Most expensive cars',
-    yAxisTitle = 'Count'
+    value_col='Price',
+    yAxisTitle='Count'
 )
-
-
-
 
 
 
