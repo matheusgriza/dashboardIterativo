@@ -45,9 +45,12 @@ def process_dataset(df):
         df['Dealer_No'].fillna("Unknown Dealer No", inplace=True)
         df['Body Style'].fillna("Unknown Body Style", inplace=True)
         df['Dealer_Region'].fillna("Unknown Dealer Region", inplace=True)
+        df["Date"] = pd.to_datetime(df["Date"], errors="coerce")
+        df["Year"] = df["Date"].dt.year
+        df["Month"] = df["Date"].dt.month
 
         print("Data prepared successfully")
         return df
     except Exception as err:
         print(f"Unexpected error: ${err}")
-        raise;
+        raise
