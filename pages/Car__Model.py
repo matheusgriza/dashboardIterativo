@@ -45,13 +45,13 @@ with chart_col1:
         df = f1_df,
         group_col='Model',
         value_col= 'Gender',
-        title='Most popular model between genders',
+        title='Carros mais populares entre gêneros',
         yAxisTitle = 'Count'
     )
 
 with text_col1:
-    st.markdown("### Chart Description")
-    st.write("This is the chart description")
+    st.markdown("### **Descrição**")
+    st.write("Este gráfico apresenta a contagem das vendas dos modelos de veículos mais populares, segmentadas por gênero dos compradores.\n\n O usuário pode escolher quantos dos principais modelos deseja visualizar (top 5, 10 ou 15) e também pode filtrar os dados por marca específica ou analisar todas as marcas juntas.")
 
 
 st.markdown("---")
@@ -69,12 +69,14 @@ with col3:
 with col4:
     min_price = df['Price'].min()
     max_price = df['Price'].max()
-    price_options = list(range(min_price, max_price + 1))
     
-    price_slider = st.select_slider(
-    "Select Max Price",
-    options= price_options,
-    format_func = lambda x: f"${x:,.0f}" 
+    price_slider = st.slider(
+        "Select Max Price",
+        min_value = int(1200),
+        max_value = int(85000),
+        value = (min_price + max_price) // 2,
+        step = 1000,
+        format = "$%d"
     )
 with col5:
     auto = st.checkbox("Auto")
@@ -93,7 +95,7 @@ if(auto and not(manual)):
 elif(manual and not(auto)):
     f2_df = f2_df[f2_df["Transmission"] == "Manual"]
     
-f2_df = f2_df.sort_values(by="Price", ascending=False)
+f2_df = f2_df.sort_values(by="Price", ascending=False).head(30)
 
 display(
     kind='bar',
