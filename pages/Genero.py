@@ -8,7 +8,7 @@ from components.chart import display
 df = load_data()
 
 #Page config
-st.set_page_config(page_title="Gender", layout="wide")
+st.set_page_config(page_title="Genero", layout="wide")
 st.markdown("# 🧑‍💼👩‍💼 Classificação por Gênero")
 
 

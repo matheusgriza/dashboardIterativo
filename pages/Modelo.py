@@ -3,8 +3,8 @@ from scripts.data_loader import load_data
 from components.chart import display
 import pandas as pd
 #Page config
-st.set_page_config(page_title="By Car Model & Brand", layout="wide")
-st.markdown("# 🚘 Sales by Car Model")
+st.set_page_config(page_title="Modelo", layout="wide")
+st.markdown("# 🚘 Vendas por Modelo e Categoria")
 
 # Load data
 df = load_data()
