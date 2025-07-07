@@ -13,7 +13,7 @@ Todas as paginas estão estruturadas da mesma maneira. Utilize os filtros locali
 
 Para rodar localmente, na raiz do projeto execute:
 
-**    streamlit run Home.py **
+**streamlit run Home.py**
 
 ### Disponivel também em:
   https://dashboard-iterativo-cd.streamlit.app/
